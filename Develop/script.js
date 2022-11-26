@@ -1,19 +1,37 @@
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
-const timeDisplayEL = $('.time-display');
-const saveBtn = document.querySelector("button");
-const row = document.querySelector('.description')
+const timeDisplayEL = $('#time-display');
+// const saveBtns = document.querySelector(".saveBtn");
+// const row = document.querySelector('.description')
 
 
-$(function () {
+ 
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
   // local storage. HINT: What does `this` reference in the click listener
   // function? How can DOM traversal be used to get the "hour-x" id of the
   // time-block containing the button that was clicked? How might the id be
   // useful when saving the description in local storage?
-  //
+
+//Fucntion 
+ $(document).ready(function () {
+    $(".saveBtn").on("click", function () {
+      var input = $(this).siblings(".description").val();
+      var timeSlot = $(this).parent().attr("id");
+        //Save input and timeSlot data to local storage
+        localStorage.setItem(timeSlot, input);
+    });
+
+
+// loop for getting specific keys in local storage to place them back into the page
+ Object.keys(localStorage).forEach(function(key){
+  //interpollate the key(as a string) and # concanation  to get items from local storage to the correct element.
+  $(`#${String(key)} .description`).val(localStorage.getItem(key))
+  //dynamicly building out hour-9 portion $(`#hour-9 .description`).val(localStorage.getItem(key))
+});
+
+
   // TODO: Add code to apply the past, present, or future class to each time
   // block by comparing the id to the current hour. HINTS: How can the id
   // attribute of each time-block be used to conditionally add or remove the
@@ -28,49 +46,13 @@ $(function () {
 });
 
 function displayTime(){
-const currentTime = dayjs().format('dddd ,MMMM D');
+const currentTime = dayjs().format('dddd, MMMM D');
 timeDisplayEL.text(currentTime);
+console.log(currentTime);
 
 };
 
-// saveBtn.click(function(event) {
-//  event.preventDefault()
-//   var element = element.target;
 
-//   if (element.matches("button")) {
-//     //var timeBlock = element.parentElement.getAttribeute("id")
-//     var textArea = element.previousElementSibling.val();
-//     localStorage.setItem("task", textArea);
-  
 
-//   }
-//   });
-
-// We will want to create a element that takes the class and pulls the ID related to each button
-
-var saveIcon = document.querySelectorAll(".fas")
-for(var i = 0; i < saveIcon.length; i++) {
-  var currentItem = saveIcon[i]
-  currentItem.setAttribute('id', [i])
-  console.log(saveIcon[i])
-saveIcon[i].addEventListener("click", function (event) {
-  event.preventDefault();
-  var element = event.target;
-  if (element.matches(".fa-save")) {
-    var textarea = element.parentElement.previousElementSibling.value
-    var test = element.getAttribute('id')
-    localStorage.setItem(test, textarea);
-    console.log(currentItem)
-}
-})};
-
-function loadTasks(){
-     var task = localStorage.getItem(test, textArea)
-     if(!task){
-        console.log("No Imput")
-       return
-   }
-
-  }
 
 displayTime();
