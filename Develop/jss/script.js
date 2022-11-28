@@ -13,14 +13,13 @@ $(document).ready(function () {
        localStorage.setItem(timeSlot, input);
   });
 
-
   // loop for getting specific keys in local storage to place them back into the page.
   Object.keys(localStorage).forEach(function(key){
   //interpollate the key(as a string) and # concanation  to get items from local storage to the correct element.
     $(`#${String(key)} .description`).val(localStorage.getItem(key))
     //dynamicly building out hour-9 portion $(`#hour-9 .description`).val(localStorage.getItem(key))
   });
-  
+
 //Function that forces my timeCheck to perform every second.
 var intervalId = window.setInterval(function(){
   //function for tracking the current time on the page.
