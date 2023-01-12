@@ -17,7 +17,7 @@ No Installation Steps
 ## Usage
 
 This project can be initiated typing a Task into the writable portion of each row and clicking the button on the left to save that information to the local storage. The Task will remain on the page even after refreshing. The Tasks will update color in real time to indicate Tasks that are present, current, or past based on the time of the day.
-![Alt text](.\assets\images\simple-calendar.jpg)
+![Alt text](./assets/images/simple-calendar.jpg)
 
 ## Credits
 
