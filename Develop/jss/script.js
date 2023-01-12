@@ -39,6 +39,8 @@ $(document).ready(function () {
 	}
 	//Runs the timeCheck function
 	timeCheck();
+	//Code that forces my timeCheck to perform every second.
+	setInterval(timeCheck, 5000);
 });
 // Function for adding a Date display at the top of the page.
 function displayTime() {
@@ -49,6 +51,3 @@ function displayTime() {
 
 // runs the Display time Function.
 displayTime();
-//Function that forces my timeCheck to perform every second.
-setInterval(timeCheck(), 5000);
-
